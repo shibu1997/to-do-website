@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block body %} 
+
+<div class="col-lg-4 shadow mx-auto alert alert-dark my-4">
+<h2  class= "alert alert-danger">  Sign-up Form </h2>
+
+
+
+<div class= "alert alert-success"> <h3><b>Create Account</b></h3>
+<hr>
+<form  method="post" action="/signup/">
+{% csrf_token %}
+ {{form.as_p}}
+<hr>
+ <input type="submit" value = "Submit" class = " btn btn-info my-2 shadow ">
+ </form>
+</div>
+</div>
+</div>
+{% endblock body %}
+
+{% block logout %}
+      <ul class="navbar-nav " style=" margin-left: 85vw;">
+        <li class="nav-item ">
+          <a class=  "nav-link active" aria-current="page" href="/login/">Login</a>
+        </li>
+
+{% endblock logout %}

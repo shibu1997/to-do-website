@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="row mx-5">
+<div class="col-lg-3 shadow mx-auto my-4 p-0">
+<h2 class= "alert alert-danger"> Add Todo </h2>
+
+<div class="container">
+<form method = "post"  action="/add_todo/">
+{% csrf_token %}
+{{form.as_p}}
+<hr>
+<input type="submit" value = "ADD" class = " btn btn-info my-2 shadow ">
+</form>
+</div>
+</div>
+<div class="col my-4 p-0 shadow mx-2">
+<div>
+<h2 class="alert alert-danger px-10" style="text-transform: uppercase;     padding-left: 20vw;" > {{user}}'s todos</h2>
+
+<table class= "table" >
+<thead>
+<tr>
+
+<th>S.no</th>
+<th>Title</th>
+<th>Status</th>
+<th>priority</th>
+<th>Delete</th>
+</tr>
+</thead>
+  <tbody>
+{%for todo in todos%}
+<tr>
+<td>{{forloop.counter}}</td>
+<td>{{todo.title}}</td>
+<td>{{todo.status}}</td>
+<td>{{todo.priority}}</td>
+<td><a href="/delete-todo/{{todo.id}}" class= "btn btn-danger" >Delete</a></td>
+</tr>
+{% endfor %}
+
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+{% endblock body %}
+{% block logout %}
+      <ul class="navbar-nav " style=" margin-left: 85vw;">
+
+<li class="nav-item ">
+          <a class=  "nav-link active" aria-current="page" href="/logout/">Logout</a>
+        </li>
+
+{% endblock logout %}
+  {% block home %}    <a class="navbar-brand" href="/">TO-DO</a>
+{% endblock home %}
